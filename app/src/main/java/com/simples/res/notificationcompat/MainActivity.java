@@ -1,6 +1,8 @@
 package com.simples.res.notificationcompat;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,10 +46,22 @@ public class MainActivity extends AppCompatActivity {
 
     protected void displayNotification(){
 
+        /* Invoking the default notification service */
+        Notification.Builder builder = new Notification.Builder(getApplicationContext());
+        builder.setContentTitle("New Message");
+        builder.setContentText("You've received new message.");
+        builder.setTicker("New Message Alert!");
+        builder.setSmallIcon(R.drawable.woman);
+
+        /* Increase notification number every time a new notification arrives */
+        builder.setNumber(++numMessages);
+
+        /* Creates an explicit intent for an Activity in your app */
+        Intent resultIntent = new Intent(this, NotificationView.class);
     }
 
     protected void cancelNotification(){
-
+        manager.cancel(notificationID);
     }
 
     protected void updateNotification(){
