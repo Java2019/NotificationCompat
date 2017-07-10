@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Notification compat</string>
+    <string name="start_note">Start notification</string>
+    <string name="cancel_note">Cancel notification</string>
+    <string name="update_note">Update notification</string>
 </resources>
