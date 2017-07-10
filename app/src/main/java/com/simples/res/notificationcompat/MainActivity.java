@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         /* Creates an explicit intent for an Activity in your app */
         Intent resultIntent = new Intent(this, NotificationView.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        //stackBuilder.addNextIntent(resultIntent);
+        stackBuilder.addParentStack(NotificationView.class);
 
         /* Adds the Intent that starts the Activity to the top of the stack */
         stackBuilder.addNextIntent(resultIntent);
