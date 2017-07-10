@@ -2,6 +2,9 @@ package com.simples.res.notificationcompat;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,6 +61,21 @@ public class MainActivity extends AppCompatActivity {
 
         /* Creates an explicit intent for an Activity in your app */
         Intent resultIntent = new Intent(this, NotificationView.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(NotificationView.class);
+
+        /* Adds the Intent that starts the Activity to the top of the stack */
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        builder.setContentIntent(resultPendingIntent);
+        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        /* notificationID allows you to update the notification later on. */
+        manager.notify(notificationID, builder.build());
     }
 
     protected void cancelNotification(){
