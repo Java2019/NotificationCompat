@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         mBuilder.setSmallIcon(R.drawable.woman);
 
         /* Increase notification number every time a new notification arrives */
-        mBuilder.setNumber(++numMessages);
+        mBuilder.setNumber(++numMessages );
 
         /* Creates an explicit intent for an Activity in your app */
         Intent resultIntent = new Intent(this, NotificationView.class);
